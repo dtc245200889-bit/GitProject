@@ -1,0 +1,268 @@
+```html
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Market Research Survey</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+<div class="container">
+
+    <div class="header">
+        <h1>Market Research Survey</h1>
+        <p>Please take a few moments to complete this satisfaction survey.</p>
+    </div>
+
+    <form id="surveyForm">
+
+        <div class="form-group">
+            <label for="age">What is your age range?</label>
+            <select id="age" required>
+                <option value="">Select</option>
+                <option>Under 18</option>
+                <option>18 - 24</option>
+                <option>25 - 34</option>
+                <option>35 - 44</option>
+                <option>45 - 54</option>
+                <option>55 - 64</option>
+                <option>65 or older</option>
+            </select>
+        </div>
+
+        <div class="form-group">
+            <label for="income">What is your yearly income range?</label>
+            <select id="income" required>
+                <option value="">Select</option>
+                <option>Under $25,000</option>
+                <option>$25,000 - $49,999</option>
+                <option>$50,000 - $74,999</option>
+                <option>$75,000 - $99,999</option>
+                <option>$100,000 - $149,999</option>
+                <option>$150,000 or more</option>
+            </select>
+        </div>
+
+        <div class="form-group">
+            <label>Gender Identity</label>
+
+            <div class="radio-group">
+                <label>
+                    <input type="radio" name="gender" value="Male">
+                    Male
+                </label>
+
+                <label>
+                    <input type="radio" name="gender" value="Female">
+                    Female
+                </label>
+
+                <label>
+                    <input type="radio" name="gender" value="Nonbinary">
+                    Nonbinary
+                </label>
+
+                <label>
+                    <input type="radio" name="gender" value="Other">
+                    Other
+                </label>
+            </div>
+
+            <textarea
+                id="genderOther"
+                maxlength="250"
+                placeholder="If other, please specify..."
+            ></textarea>
+
+            <div class="counter">
+                Maximum of 250 characters.
+                <span id="charCount">0</span>/250
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label>
+                Which of the following products have you purchased
+                in the last 2 months? Please check all that apply.
+            </label>
+
+            <div class="checkbox-group">
+                <label>
+                    <input type="checkbox" name="product" value="Product 1">
+                    Product 1
+                </label>
+
+                <label>
+                    <input type="checkbox" name="product" value="Product 2">
+                    Product 2
+                </label>
+
+                <label>
+                    <input type="checkbox" name="product" value="Product 3">
+                    Product 3
+                </label>
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label>How often would you use our new product?</label>
+
+            <div class="radio-group">
+                <label>
+                    <input type="radio" name="frequency" value="Daily">
+                    Daily
+                </label>
+
+                <label>
+                    <input type="radio" name="frequency" value="Weekly">
+                    Weekly
+                </label>
+
+                <label>
+                    <input type="radio" name="frequency" value="Monthly">
+                    Monthly
+                </label>
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label>What would you pay for the new product?</label>
+
+            <div class="price-input">
+                <span>$</span>
+
+                <input
+                    type="number"
+                    id="dollars"
+                    min="0"
+                    placeholder="Dollars"
+                >
+
+                <span class="dot">.</span>
+
+                <input
+                    type="number"
+                    id="cents"
+                    min="0"
+                    max="99"
+                    placeholder="Cents"
+                >
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label for="features">
+                What features would you like to see in the new product?
+            </label>
+
+            <textarea
+                id="features"
+                rows="5"
+                placeholder="Please enter your suggestions..."
+            ></textarea>
+        </div>
+
+        <div class="form-group">
+
+            <label>
+                Please rate your level of agreement with the following statements.
+            </label>
+
+            <div class="rating-table">
+
+                <div class="rating-header">
+                    <div></div>
+                    <div>Strongly<br>Disagree</div>
+                    <div>Disagree</div>
+                    <div>Agree</div>
+                    <div>Strongly<br>Agree</div>
+                </div>
+
+                <div class="rating-row">
+                    <div class="statement">
+                        Our products are priced fairly.
+                    </div>
+
+                    <label>
+                        <input type="radio" name="priceRating" value="1">
+                    </label>
+
+                    <label>
+                        <input type="radio" name="priceRating" value="2">
+                    </label>
+
+                    <label>
+                        <input type="radio" name="priceRating" value="3">
+                    </label>
+
+                    <label>
+                        <input type="radio" name="priceRating" value="4">
+                    </label>
+                </div>
+
+                <div class="rating-row">
+                    <div class="statement">
+                        Our products are high quality.
+                    </div>
+
+                    <label>
+                        <input type="radio" name="qualityRating" value="1">
+                    </label>
+
+                    <label>
+                        <input type="radio" name="qualityRating" value="2">
+                    </label>
+
+                    <label>
+                        <input type="radio" name="qualityRating" value="3">
+                    </label>
+
+                    <label>
+                        <input type="radio" name="qualityRating" value="4">
+                    </label>
+                </div>
+
+                <div class="rating-row">
+                    <div class="statement">
+                        You would recommend our product to a friend or coworker.
+                    </div>
+
+                    <label>
+                        <input type="radio" name="recommendRating" value="1">
+                    </label>
+
+                    <label>
+                        <input type="radio" name="recommendRating" value="2">
+                    </label>
+
+                    <label>
+                        <input type="radio" name="recommendRating" value="3">
+                    </label>
+
+                    <label>
+                        <input type="radio" name="recommendRating" value="4">
+                    </label>
+                </div>
+
+            </div>
+        </div>
+
+        <div class="buttons">
+            <button type="submit">Submit</button>
+            <button type="reset" class="reset-btn">Reset</button>
+        </div>
+
+        <div id="message"></div>
+
+    </form>
+
+</div>
+
+<script src="script.js"></script>
+
+</body>
+</html>
+```
