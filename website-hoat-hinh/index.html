@@ -1,0 +1,197 @@
+
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hoạt Hình Vui</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <header class="header">
+        <a href="#" class="logo">Hoạt Hình Vui</a>
+        <nav class="head-link">
+            <a href="#home">Trang chủ</a>
+            <a href="#movies">Danh sách phim</a>
+            <a href="#footer">Liên hệ</a>
+        </nav>
+    </header>
+
+    <div class="banner" id="home">
+        <h1>Thế giới hoạt hình</h1>
+        <p>Khám phá những câu chuyện thú vị dành cho cả gia đình</p>
+    </div>
+
+    <div class="toolbar" id="movies">
+        <input type="text" id="searchInput" placeholder="Tìm phim theo tên...">
+
+        <select id="sortSelect">
+            <option value="newest">Mới cập nhật</option>
+            <option value="views">Nhiều lượt xem nhất</option>
+        </select>
+    </div>
+
+    <div class="content">
+        <aside class="left-content">
+            <h2>Danh sách phim</h2>
+            <div id="movieList"></div>
+            <p id="noResults" class="no-results" hidden>Không tìm thấy phim phù hợp.</p>
+        </aside>
+
+        <main class="right-content">
+            <div class="video-box">
+                <iframe
+                    id="youtubePlayer"
+                    src="https://www.youtube-nocookie.com/embed/aqz-KE-bpKQ"
+                    title="Video hoạt hình"
+                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                    allowfullscreen>
+                </iframe>
+
+                <video id="localPlayer" controls playsinline hidden>
+                    Trình duyệt của bạn không hỗ trợ video.
+                </video>
+            </div>
+
+            <div class="movie-info">
+                <h2 id="movieTitle">Big Buck Bunny</h2>
+                <p id="movieDescription">
+                    Video hoạt hình mẫu được nhúng từ YouTube.
+                </p>
+                <p id="movieViews">Lượt xem: 125000</p>
+                <p class="note">
+                    Video mẫu dùng để thực hành. Nội dung, chất lượng và quảng cáo
+                    phụ thuộc vào nguồn video.
+                </p>
+            </div>
+        </main>
+    </div>
+
+    <footer id="footer">
+        <p>© 2026 Hoạt Hình Vui. Trang web thực hành HTML và CSS.</p>
+    </footer>
+
+    <script>
+        const movies = [
+            {
+                id: 1,
+                title: "Big Buck Bunny",
+                description: "Phim hoạt hình mẫu được nhúng từ YouTube.",
+                views: 125000,
+                date: "2026-10-15",
+                type: "youtube",
+                source: "https://www.youtube-nocookie.com/embed/aqz-KE-bpKQ"
+            },
+            {
+                id: 2,
+                title: "Hoạt hình thỏ vui nhộn",
+                description: "Video mẫu dùng thẻ video HTML.",
+                views: 98000,
+                date: "2026-10-12",
+                type: "video",
+                source: "https://www.w3schools.com/html/mov_bbb.mp4"
+            },
+            {
+                id: 3,
+                title: "Thế giới động vật",
+                description: "Video mẫu để luyện tập giao diện phát phim.",
+                views: 76000,
+                date: "2026-10-10",
+                type: "video",
+                source: "https://www.w3schools.com/html/mov_bbb.mp4"
+            }
+        ];
+
+        const movieList = document.getElementById("movieList");
+        const searchInput = document.getElementById("searchInput");
+        const sortSelect = document.getElementById("sortSelect");
+        const noResults = document.getElementById("noResults");
+
+        const youtubePlayer = document.getElementById("youtubePlayer");
+        const localPlayer = document.getElementById("localPlayer");
+
+        let currentMovieId = 1;
+
+        function renderMovies() {
+            const keyword = searchInput.value.trim().toLowerCase();
+            const sortType = sortSelect.value;
+
+            let filteredMovies = movies.filter(movie =>
+                movie.title.toLowerCase().includes(keyword)
+            );
+
+            if (sortType === "views") {
+                filteredMovies.sort((a, b) => b.views - a.views);
+            } else {
+                filteredMovies.sort((a, b) =>
+                    new Date(b.date) - new Date(a.date)
+                );
+            }
+
+            movieList.innerHTML = "";
+
+            filteredMovies.forEach(movie => {
+                const item = document.createElement("button");
+                item.className = "movie-item";
+                item.type = "button";
+
+                if (movie.id === currentMovieId) {
+                    item.classList.add("active");
+                }
+
+                item.innerHTML = `
+                    <span class="movie-number">▶</span>
+                    <span class="movie-text">
+                        <strong>${movie.title}</strong>
+                        <small>${movie.views.toLocaleString("vi-VN")} lượt xem</small>
+                    </span>
+                `;
+
+                item.addEventListener("click", () => playMovie(movie.id));
+                movieList.appendChild(item);
+            });
+
+            noResults.hidden = filteredMovies.length !== 0;
+        }
+
+        function playMovie(id) {
+            const movie = movies.find(item => item.id === id);
+
+            if (!movie) return;
+
+            currentMovieId = movie.id;
+
+            if (movie.type === "youtube") {
+                localPlayer.pause();
+                localPlayer.hidden = true;
+                localPlayer.removeAttribute("src");
+                localPlayer.load();
+
+                youtubePlayer.src = movie.source;
+                youtubePlayer.hidden = false;
+            } else {
+                youtubePlayer.src = "";
+                youtubePlayer.hidden = true;
+
+                localPlayer.src = movie.source;
+                localPlayer.hidden = false;
+                localPlayer.load();
+            }
+
+            document.getElementById("movieTitle").textContent = movie.title;
+            document.getElementById("movieDescription").textContent = movie.description;
+            document.getElementById("movieViews").textContent =
+                "Lượt xem: " + movie.views.toLocaleString("vi-VN");
+
+            renderMovies();
+        }
+
+        searchInput.addEventListener("input", renderMovies);
+        sortSelect.addEventListener("change", renderMovies);
+
+        renderMovies();
+    </script>
+
+</body>
+</html>
