@@ -1,0 +1,75 @@
+```css
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f1f5f9;
+    color: #1e293b;
+    margin: 30px;
+}
+
+h1 {
+    color: #2563eb;
+    text-align: center;
+}
+
+section {
+    background-color: white;
+    padding: 15px 25px;
+    margin-bottom: 20px;
+    border-radius: 8px;
+}
+
+h2 {
+    color: #0f766e;
+}
+
+.mon-hoc {
+    list-style-type: square;
+}
+
+.lo-trinh {
+    list-style-type: upper-roman;
+}
+
+.cong-cu {
+    list-style-image: url("bullet.svg");
+}
+
+.outside {
+    list-style-position: outside;
+    background-color: #dbeafe;
+    padding: 20px 35px;
+}
+
+.inside {
+    list-style-position: inside;
+    background-color: #dcfce7;
+    padding: 20px;
+}
+
+.rut-gon {
+    list-style: square inside url("bullet.svg");
+}
+
+.ngon-ngu {
+    background-color: #dbeafe;
+    color: #1d4ed8;
+    padding: 25px 40px;
+    list-style-type: circle;
+}
+
+.ngon-ngu li {
+    margin-bottom: 10px;
+}
+
+.tong-hop {
+    list-style: upper-roman inside;
+    background-color: #ccfbf1;
+    color: #115e59;
+    padding: 25px 40px;
+    border-radius: 8px;
+}
+
+.tong-hop li {
+    margin: 10px 0;
+}
+```
