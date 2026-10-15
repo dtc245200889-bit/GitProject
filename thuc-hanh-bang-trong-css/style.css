@@ -1,0 +1,51 @@
+```css
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f1f5f9;
+    color: #1e293b;
+    margin: 30px;
+}
+
+h1 {
+    text-align: center;
+    color: #2563eb;
+}
+
+h2 {
+    color: #0f766e;
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+    background-color: white;
+}
+
+table, th, td {
+    border: 1px solid #94a3b8;
+}
+
+th {
+    height: 50px;
+    text-align: left;
+    vertical-align: middle;
+    padding: 12px;
+    background-color: #1e40af;
+    color: white;
+}
+
+td {
+    height: 50px;
+    padding: 12px;
+    vertical-align: middle;
+    color: #334155;
+}
+
+tbody tr:nth-child(even) {
+    background-color: #dbeafe;
+}
+
+tbody tr:hover {
+    background-color: #bfdbfe;
+}
+```
